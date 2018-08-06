@@ -16,19 +16,26 @@ ramp = x.*[zeros(1,10) , ones(1,11)];
 subplot(2,2,1)
 stem(x,imp)
 title('Impulse')
+xlabel('n')
+ylabel('y')
 
 subplot(2,2,2)
 stem(x,step);
 title('Step')
+xlabel('n')
+ylabel('y')
 
 subplot(2,2,3)
 stem(x,sgn);
 title('Signum')
+xlabel('n')
+ylabel('y')
 
 subplot(2,2,4)
 stem(x,ramp);
 title('Ramp')
-
+xlabel('n')
+ylabel('y')
 
 
 
