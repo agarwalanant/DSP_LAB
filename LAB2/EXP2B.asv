@@ -1,0 +1,10 @@
+% WAP to gen a sq wave 50hz sampling freq 1000Hz duty cycle:25 50 75  [continuous and discrete]
+
+x= 0:0.001:0.1;
+
+sq = square(x,25);
+
+subplot(2
+plot(x,sq)
+stem(x,sq);
+

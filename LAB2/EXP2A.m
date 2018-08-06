@@ -1,6 +1,6 @@
 clc
 clear 
-clear all
+close all
 
 % WAP to generate unit impulse unit step ramp and signum function using inbuit function zeros and ones.
 
