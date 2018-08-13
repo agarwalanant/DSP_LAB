@@ -1,3 +1,4 @@
+% WAP linar convo given seq witout using inbuilt function 
 
 clc
 clear all
@@ -5,14 +6,14 @@ close all
 
 subplot(3,2,1)
 n=-10:10;
-w=input('Enter Seq x1');
+w=(n>=0)-(n>=4);
 stem(n,w);
 title('X[n]');
 n1 = length(w);
 
 
 subplot(3,2,2)
-x=input('Enter seq x2');
+x=n.*(n>=0)-2*(n-4).*(n>=4)+(n-8).*(n>=8);
 stem(n,x);
 n2 = length(x);
 title('y[n]');
@@ -37,3 +38,7 @@ stem(N,C);
 title('x[n]*y[n]');
 
 n3=length(w);
+
+
+
+
