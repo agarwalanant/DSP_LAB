@@ -1,0 +1,29 @@
+% WAP to N point DFT of user input sequence without using inbuit function
+% and plot it's phase and magnitude spectrum
+% compute IDFT of the result obtained in part a
+
+clc 
+close all
+clear all
+
+prompt = 'Enter the sequence 1 ';
+x = input(prompt);
+
+
+fft(x)
+N = length(x);
+X = zeros(4,1);
+for k = 0:N-1
+    for n = 0:N-1
+        X(k+1) = X(k+1) + x(n+1)*exp(-j*pi/2*n*k);
+    end
+end
+X
+X1 = zeros(4,1);
+for k = 0:N-1
+    for n = 0:N-1
+        X1(k+1) = (X1(k+1) + x(n+1)*exp(j*pi/2*n*k)/N);
+    end
+    X1(k)= X1(k)/N;
+end
+X1
