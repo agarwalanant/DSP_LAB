@@ -27,7 +27,7 @@ title('Time domain - Input sequence')
 grid on
 
 subplot(222)
-stem(t,X)
+stem(t,abs(X))
 xlabel('Frequency');
 ylabel('|X(k)|');
 title('Frequency domain - Magnitude response')
