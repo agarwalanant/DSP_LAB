@@ -1,88 +1,111 @@
-%  WAP for the sequence x[n] = { 1,1,1,2,1,1 } amd h[n] = { 1,1,2,1}
-%      a.) compute circular convolution without direct command
-%      b.) compute linear convolution using circular convolution ( as
-%          computed in part (a) )
-%      c.) compute circular convolution using linear convolution and verify
-%          result with part (a)
-%      d.) compute circular convolution using DFT and IDFT method
+% LAB->5
+% for the sequence x[n]=[1 1 1 2 1 1] and h[n]=[1 1 2 1] 
+% 1.Compute Circular Convo without using Direct Method
+% 2.Compute Linear Conv using Circular conv
+% 3.Compute Circular using Linear Conv
+% 4.Compute Circular Conv using DFT and IDFT
+close all
+clc
+clear all
 
+% First Part
+ x1=[1,1,1,2,1,1]
+x2=[1,1,2,1]
+n1=length(x1);
 
-clc;
-clear all;
-close all;
+n2=length(x2);
 
-x=input('enter elements in x[n] : ');
-h=input('enter elements in h[n] : ');
-n1=length(x);
-n2=length(h);
 N=max(n1,n2);
 
 n3=n1-n2;
 if(n3>0)
-    h=[h,zeros(1,n3)];
+
+    x2=[x2,zeros(1,n3)];
 else
-    x=[x,zeros(1,-n3)];
-end
 
+    x1=[x1,zeros(1,-n3)];
+end
 for n=1:N
+
     x(n)=0;
-for i=1:N
-        j=n-i+1;
-        if(j<=0)
-            j=N+j;
-        end
-        x(n)=[x(n)+(x(i)*h(j))];
-end
-end
- 
-n=1:6;
-subplot(2,2,1)
-stem(n,x(n),'k')
-title('Circular Convolution')
-ylabel('amplitude')
-xlabel('time')
 
-h=[h,zeros(1,n1+n2-N-1)];
-x=[x,zeros(1,n1+n2-N-1)];
-N=n1+n2-1;
- 
-for n=1:N
-    x3(n)=0;
     for i=1:N
+
         j=n-i+1;
+
         if(j<=0)
-            j=N+j;
-        end
-        x3(n)=[x3(n)+(x(i)*h(j))];
-   end        
-  end
- 
-n=1:9;      
+
+            j=N+j;end
+
+        x(n)=[x(n)+(x1(i)*x2(j))];
+
+    end
+
+end
+
+n=[1 2 3 4 5 6 ];
+subplot(2,2,1)
+stem(n,x(n))
+title('Circular Convolution')
+xlabel('n')
+ylabel('y[n]')
+
+% Second Part
+x2=[x2,zeros(1,n1+n2-N-1)];
+x1=[x1,zeros(1,n1+n2-N-1)];
+N=n1+n2-1
+for n=1:N
+
+    x3(n)=0;
+
+    for i=1:N
+
+        j=n-i+1;
+
+        if(j<=0)
+
+            j=N+j;end
+
+        x3(n)=[x3(n)+(x1(i)*x2(j))];
+
+    end
+
+end
+x3
+n=[1 2 3 4 5 6 7 8 9];
 subplot(2,2,2)
-stem(n,x3(n),'k')
+stem(n,x3(n))
 title('Linear Convolution using Circular Convolution')
-ylabel('amplitude')
-xlabel('time')        
-        
+xlabel('n')
+ylabel('y[n]')
+
+% Third Part
 for i=1:(N-max(n1,n2))
+
     x3(i)=x3(i)+x3(i+max(n1,n2));
+
 end
- 
 for i=1:max(n1,n2)
-    x4(i)=x3(i);
+
+x4(i)=x3(i);
+
 end
- 
-n=1:6; 
-subplot(2,2,3) 
+
+n=[1 2 3 4 5 6 ];
+subplot(2,2,3)
 stem(n,x4(n))
 title('Circular Convolution using Linear Convolution')
-ylabel('amplitude')
-xlabel('time')
- 
+xlabel('n')
+ylabel('y[n]')
+
+% Fourth Part
 x5=zeros(1,n1)
- 
 for k=1:n1
     for n=1:n1
-        x5(k)=x5(k)+[x(n)*exp((-i)*2*pi*(k-1)*(n-1)/n1)];
+        x5(k)=x5(k)+[x1(n)*exp((-i)*2*pi*(k-1)*(n-1)/n1)];
     end
 end
+
+x5
+
+ 
