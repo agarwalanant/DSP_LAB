@@ -49,3 +49,24 @@ grid on
 soundsc(x2,fs1);
 
 
+
+fc2=3200; %cutoff freq
+w2=fc2/(2*fs1); %normalised freq
+%Design a LPF with above specification
+
+[b2, a2]=butter(5,w2,'low'); %5th order butterworth filter
+[h2, w2]=freqz(b2, a2, 1024); %freq response of the filter
+x3=filter(b2,a2,y1); %pass the i/p signal from filter
+figure(7);
+freqz(x2);
+title('Cute off 3.2kHz');
+figure(8);
+plot(w2/(pi*2*fs1),abs(h2));
+
+title('frequency response of 5th order filter');
+ylabel('Magnitude');
+xlabel('Freq(Hz)');
+grid on
+soundsc(x3,fs1);
+
+
